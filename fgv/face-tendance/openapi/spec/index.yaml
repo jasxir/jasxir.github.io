@@ -1,0 +1,102 @@
+openapi: 3.0.0
+info:
+  title: FGV - FaceTendance
+  contact:
+    name: Aim-Force Software SDN BHD
+    url: http://www.aim-force.com.my
+  version: 0.1.0-alpha
+  license:
+    name: Proprietary
+    url: https://jasxir.github.io/fgv/face-tendance/openapi
+
+  description: API for retrieving and managing all data related to attendance including supervisor, worker, attendance records.
+servers:
+  - url: "https://{host}"
+    description: Base URL for the FaceTendance API
+    variables:
+      host:
+        default: "api.facetendance.com"
+
+paths:
+  /api/v1/supervisors/{estateId}:
+    get:
+      summary: Get Supervisor List
+      description: Downloads a list of all supervisors associated with a specific estate ID.
+      security: []
+      operationId: getSupervisorsByEstate
+      tags:
+        - Supervisors
+      parameters:
+        - name: estateId
+          in: path
+          required: true
+          description: The unique ID of the estate whose supervisors are being retrieved.
+          schema:
+            type: string
+            example: "01403226" # Use a sample ID here
+      responses:
+        "200":
+          description: A successful response containing an array of supervisors.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Supervisor"
+              example:
+                - id: "01403226"
+                  name: "MOHD ASRI BIN MOHD RAZALI"
+                - id: "01403462"
+                  name: "NORHAZAWATI BT HASSAN"
+                - id: "01404540"
+                  name: "MOHD KHAIDAN BIN NAZERI"
+        "404":
+          description: The estate ID was not found.
+        "500":
+          description: Internal server error.
+  /api/v1/workers/{estateId}:
+    get:
+      summary: Get Worker List
+      description: Downloads a list of all workers associated with a specific estate ID.
+      security: []
+      operationId: getWorkersByEstate
+      tags:
+        - Workers
+      parameters:
+        - name: estateId
+          in: path
+          required: true
+          description: The unique ID of the estate whose supervisors are being retrieved.
+          schema:
+            type: string
+            example: "01403226"
+      responses:
+        "200":
+          description: A successful response containing an array of workers.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Worker"
+              example:
+                - id: FC32025000
+                  name: ROZIKIN
+                  type: FOREIGN
+                  supervisorId: "01403226"
+                - id: FC32025000
+                  name: ROZIKIN
+                  type: FOREIGN
+                  supervisorId: "01403226"
+
+        "404":
+          description: The estate ID was not found.
+        "500":
+          description: Internal server error.
+
+components:
+  schemas:
+    Supervisor:
+      $ref: schema/supervisor.yaml#/Supervisor
+    Worker:
+      $ref: schema/worker.yaml#/Worker

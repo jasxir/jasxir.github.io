@@ -1,0 +1,26 @@
+# schemas/supervisor.yaml
+
+Worker:
+  type: object
+  description: A single record representing a worker.
+  required:
+    - id
+    - name
+    - supervisorId
+  properties:
+    id:
+      type: string
+      description: The unique worker ID (mapped from `htad_worker_id`).
+      example: "FC32025000"
+    name:
+      type: string
+      description: The full name of the worker (mapped from `htad_worker_name`).
+      example: "ROZIKIN"
+    type:
+      type: string
+      description: Type of worker (mapped from `htad_worker_type`).
+      example: "FOREIGN"
+    supervisorId:
+      type: string
+      description: The full name of the worker (mapped from `htad_supervisor_id`).
+      example: "01403226"
