@@ -110,6 +110,14 @@ paths:
           required: true
           schema:
             type: string
+        - name: since
+          in: query
+          required: false
+          description: ISO 8601 timestamp. If provided, the server returns 304 if the photo hasn't changed since this time.
+          schema:
+            type: string
+            format: date-time
+            example: "2026-04-16T15:30:00+08:00"
       responses:
         "200":
           description: The worker's photo in JPEG format.
@@ -118,15 +126,17 @@ paths:
               schema:
                 type: string
                 format: binary
+        "304":
+          description: Not Modified. The photo hasn't changed since the 'since' timestamp.
         "404":
           description: Worker or photo not found.
 
-  /workers/{workerId}/embedding:
+  /workers/{workerId}/embeddings/fp32:
     get:
-      operationId: getWorkerEmbedding
+      operationId: getWorkerEmbeddingFP32
       security: []
-      summary: Download Worker Face Embedding
-      description: Returns the pre-calculated facial embedding vector for a specific worker.
+      summary: Download Worker Face Embedding (FP32)
+      description: Returns the facial embedding vector in 32-bit floating point format.
       tags:
         - Workers
       parameters:
@@ -135,17 +145,61 @@ paths:
           required: true
           schema:
             type: string
+        - name: since
+          in: query
+          required: false
+          description: ISO 8601 timestamp.
+          schema:
+            type: string
+            format: date-time
       responses:
         "200":
-          description: Successfully retrieved embedding.
+          description: Successfully retrieved FP32 embedding.
           content:
             application/json:
               schema:
                 type: array
                 items:
                   type: number
-                  format: float # Important for precision
-                example: [0.123, -0.456, 0.789]
+                  format: float
+        "304":
+          description: Not Modified.
+        "404":
+          description: Worker or embedding not found.
+
+  /workers/{workerId}/embeddings/hv-int8:
+    get:
+      operationId: getWorkerEmbeddingHVInt8
+      security: []
+      summary: Download Worker Face Embedding (Hikvision-INT8)
+      description: Returns the facial embedding vector in high efficiency Hikvision proprietary INT8 format.
+      tags:
+        - Workers
+      parameters:
+        - name: workerId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: since
+          in: query
+          required: false
+          description: ISO 8601 timestamp.
+          schema:
+            type: string
+            format: date-time
+      responses:
+        "200":
+          description: Successfully retrieved Hikvision-INT8 embedding.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: integer
+                  format: int32 # Representing the 8-bit values in a standard integer array
+        "304":
+          description: Not Modified.
         "404":
           description: Worker or embedding not found.
 components:
