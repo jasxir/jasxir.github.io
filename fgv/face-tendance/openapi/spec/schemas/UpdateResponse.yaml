@@ -1,0 +1,11 @@
+# schemas/UpdateResponse.yaml
+
+UpdateResponse:
+  type: object
+  properties:
+    lastUpdated:
+      type: string
+      format: date-time
+      example: "2026-04-16T15:30:00+08:00"
+  required:
+    - lastUpdated

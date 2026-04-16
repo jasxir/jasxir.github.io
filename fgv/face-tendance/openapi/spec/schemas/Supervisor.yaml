@@ -1,4 +1,4 @@
-# schemas/supervisor.yaml
+# schemas/Supervisor.yaml
 
 Supervisor:
   type: object

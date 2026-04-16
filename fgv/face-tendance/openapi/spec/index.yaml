@@ -130,6 +130,36 @@ paths:
           description: Not Modified. The photo hasn't changed since the 'since' timestamp.
         "404":
           description: Worker or photo not found.
+    put:
+      operationId: uploadWorkerPhoto
+      security: []
+      summary: Upload Worker Photo
+      description: Uploads or updates the worker's photo. Returns the timestamp of the update.
+      tags:
+        - Workers
+      parameters:
+        - name: workerId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          image/jpeg:
+            schema:
+              type: string
+              format: binary
+      responses:
+        "200":
+          description: Photo uploaded successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UpdateResponse"
+
+        "400":
+          description: Invalid image format.
 
   /workers/{workerId}/embeddings/fp32:
     get:
@@ -152,6 +182,7 @@ paths:
           schema:
             type: string
             format: date-time
+            example: "2026-04-16T15:30:00+08:00"
       responses:
         "200":
           description: Successfully retrieved FP32 embedding.
@@ -166,6 +197,36 @@ paths:
           description: Not Modified.
         "404":
           description: Worker or embedding not found.
+    put:
+      security: []
+      operationId: uploadWorkerEmbeddingFP32
+      summary: Upload Worker Face Embedding (FP32)
+      tags:
+        - Workers
+      parameters:
+        - name: workerId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: number
+                format: float
+      responses:
+        "200":
+          description: FP32 Embedding uploaded successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UpdateResponse"
+        "400":
+          description: Bad Request. The embedding array is malformed or has incorrect dimensions.
 
   /workers/{workerId}/embeddings/hv-int8:
     get:
@@ -188,6 +249,7 @@ paths:
           schema:
             type: string
             format: date-time
+            example: "2026-04-16T15:30:00+08:00"
       responses:
         "200":
           description: Successfully retrieved Hikvision-INT8 embedding.
@@ -202,9 +264,42 @@ paths:
           description: Not Modified.
         "404":
           description: Worker or embedding not found.
+    put:
+      security: []
+      operationId: uploadWorkerEmbeddingHVInt8
+      summary: Upload Worker Face Embedding (Hikvision-INT8)
+      tags:
+        - Workers
+      parameters:
+        - name: workerId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: integer
+                format: int32
+      responses:
+        "200":
+          description: Hikvision-INT8 Embedding uploaded successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UpdateResponse"
+        "400":
+          description: Bad Request. The embedding array is malformed or has incorrect dimensions.
+
 components:
   schemas:
     Supervisor:
-      $ref: schema/supervisor.yaml#/Supervisor
+      $ref: schemas/Supervisor.yaml#/Supervisor
     Worker:
-      $ref: schema/worker.yaml#/Worker
+      $ref: schemas/Worker.yaml#/Worker
+    UpdateResponse:
+      $ref: schemas/UpdateResponse.yaml#/UpdateResponse
