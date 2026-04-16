@@ -7,16 +7,51 @@ AttendanceRecord:
       type: string
       description: The unique worker ID (mapped from `htad_worker_id`).
       example: "FC32025000"
-    date:
-      type: string
-      format: date-time
-      description: The timestamp of the attendance record (mapped from `htad_date`).
-      example: "2026-04-16T08:00:00+08:00"
     supervisorId:
       type: string
       description: The ID of the supervisor who recorded the attendance (mapped from `htad_supervisor_id`).
       example: "01403226"
     attendanceCode:
       type: string
-      description: The status code for the attendance record, e.g., Present, Absent, Medical (mapped from `htad_attendance_code`).
+      description: The status code for the attendance record (mapped from `htad_attendance_code`).
       example: "0001"
+    workStart:
+      type: string
+      format: date-time
+      description: The start time of the main work shift (mapped from `htad_work_start`).
+      example: "2026-04-16T08:00:00+08:00"
+    workEnd:
+      type: string
+      format: date-time
+      description: The end time of the main work shift (mapped from `htad_work_end`).
+      example: "2026-04-16T17:00:00+08:00"
+    rest1Start:
+      type: string
+      format: date-time
+      description: The start time of the first rest period (mapped from `htad_rest1_start`).
+      example: "2026-04-16T10:00:00+08:00"
+    rest1End:
+      type: string
+      format: date-time
+      description: The end time of the first rest period (mapped from `htad_rest1_end`).
+      example: "2026-04-16T10:15:00+08:00"
+    rest2Start:
+      type: string
+      format: date-time
+      description: The start time of the second rest period (mapped from `htad_rest2_start`).
+      example: "2026-04-16T13:00:00+08:00"
+    rest2End:
+      type: string
+      format: date-time
+      description: The end time of the second rest period (mapped from `htad_rest2_end`).
+      example: "2026-04-16T14:00:00+08:00"
+    overtimeStart:
+      type: string
+      format: date-time
+      description: The start time of the overtime period (mapped from `htad_overtime_start`).
+      example: "2026-04-16T17:30:00+08:00"
+    overtimeEnd:
+      type: string
+      format: date-time
+      description: The end time of the overtime period (mapped from `htad_overtime_end`).
+      example: "2026-04-16T19:30:00+08:00"
