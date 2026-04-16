@@ -10,17 +10,17 @@ Worker:
   properties:
     id:
       type: string
-      description: The unique worker ID (mapped from `htad_worker_id`).
+      description: The unique worker ID (mapped from `htsd_worker_id`).
       example: "FC32025000"
     name:
       type: string
-      description: The full name of the worker (mapped from `htad_worker_name`).
+      description: The full name of the worker (mapped from `htsd_worker_name`).
       example: "ROZIKIN"
     type:
       type: string
-      description: Type of worker (mapped from `htad_worker_type`).
+      description: Type of worker (mapped from `htsd_worker_type`).
       example: "FOREIGN"
     supervisorId:
       type: string
-      description: The full name of the worker (mapped from `htad_supervisor_id`).
+      description: The full name of the worker (mapped from `htsd_supervisor_id`).
       example: "01403226"

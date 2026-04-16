@@ -9,9 +9,9 @@ Supervisor:
   properties:
     id:
       type: string
-      description: The unique supervisor ID (mapped from `htam_supervisor_id`).
+      description: The unique supervisor ID (mapped from `htsm_supervisor_id`).
       example: "01403226"
     name:
       type: string
-      description: The full name of the supervisor (mapped from `htam_supervisor_name`).
+      description: The full name of the supervisor (mapped from `htsm_supervisor_name`).
       example: "MOHD ASRI BIN MOHD RAZALI"

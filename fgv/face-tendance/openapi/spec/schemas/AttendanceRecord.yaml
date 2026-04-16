@@ -1,0 +1,22 @@
+# schemas/AttendanceRecord.yaml
+
+AttendanceRecord:
+  type: object
+  properties:
+    workerId:
+      type: string
+      description: The unique worker ID (mapped from `htad_worker_id`).
+      example: "FC32025000"
+    date:
+      type: string
+      format: date-time
+      description: The timestamp of the attendance record (mapped from `htad_date`).
+      example: "2026-04-16T08:00:00+08:00"
+    supervisorId:
+      type: string
+      description: The ID of the supervisor who recorded the attendance (mapped from `htad_supervisor_id`).
+      example: "01403226"
+    attendanceCode:
+      type: string
+      description: The status code for the attendance record, e.g., Present, Absent, Medical (mapped from `htad_attendance_code`).
+      example: "0001"

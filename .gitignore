@@ -1,2 +1,5 @@
+
 *.ods
+*.xlsx
+
 *.~lock*

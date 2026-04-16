@@ -84,18 +84,92 @@ paths:
                 items:
                   $ref: "#/components/schemas/Worker"
               example:
+                - id: LW03200020
+                  name: AZLIZAN BIN AB RAHMAN
+                  type: LOCAL
+                  supervisorId: "01403462"
+                - id: FW03200993
+                  name: HOSSEN MD SANWAR
+                  type: FOREIGN
+                  supervisorId: "01403462"
                 - id: FC32025000
                   name: ROZIKIN
-                  type: FOREIGN
-                  supervisorId: "01403226"
-                - id: FC32025001
-                  name: KHAIRUL
                   type: FOREIGN
                   supervisorId: "01403226"
         "404":
           description: The estate ID was not found.
         "500":
           description: Internal server error.
+
+  /workers/{workerId}/attendance:
+    get:
+      operationId: getWorkerAttendance
+      security: []
+      summary: Get Worker Attendance History
+      description: Returns a list of attendance records for the worker. By default, it returns the last 20 days.
+      tags:
+        - Attendance
+      parameters:
+        - name: workerId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: Number of records to return.
+          schema:
+            type: integer
+            default: 20
+      responses:
+        "200":
+          description: A list of attendance records.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/AttendanceRecord"
+              example:
+                - workerId: "FC32025000"
+                  date: "2026-04-16T08:15:00+08:00"
+                  supervisorId: "01403226"
+                  attendanceCode: "0001"
+                - workerId: "FC32025000"
+                  date: "2026-04-15T08:05:22+08:00"
+                  supervisorId: "01403226"
+                  attendanceCode: "0001"
+        "404":
+          description: Worker not found.
+
+    post:
+      operationId: uploadWorkerAttendance
+      security: []
+      summary: Save Attendance Record
+      description: Records a new attendance entry (Clock-in/Clock-out) for the worker.
+      tags:
+        - Attendance
+      parameters:
+        - name: workerId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AttendanceRecord"
+      responses:
+        "201":
+          description: Attendance recorded successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UpdateResponse"
+        "400":
+          description: Invalid data provided.
 
   /workers/{workerId}/photo:
     get:
@@ -303,3 +377,5 @@ components:
       $ref: schemas/Worker.yaml#/Worker
     UpdateResponse:
       $ref: schemas/UpdateResponse.yaml#/UpdateResponse
+    AttendanceRecord:
+      $ref: schemas/AttendanceRecord.yaml#/AttendanceRecord
