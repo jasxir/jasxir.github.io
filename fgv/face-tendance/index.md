@@ -1,4 +1,4 @@
-# FGV Attendance
+# FGV - FaceTendance
 
 ## Tables
 
