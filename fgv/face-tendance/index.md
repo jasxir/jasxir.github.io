@@ -1,5 +1,6 @@
 ---
-layout: null
+layout: simple
+title: FGV
 ---
 
 # FGV - FaceTendance
