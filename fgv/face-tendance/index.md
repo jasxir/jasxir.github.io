@@ -1,3 +1,7 @@
+---
+layout: null
+---
+
 # FGV - FaceTendance
 
 ## Tables

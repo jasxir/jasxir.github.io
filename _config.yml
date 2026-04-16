@@ -5,4 +5,3 @@ defaults:
       path: "fgv" # Applies to everything in the /fgv/ folder
     values:
       title: FGV
-      layout: "post"
