@@ -5,16 +5,53 @@ title: FGV
 
 # FGV - FaceTendance
 
-## Tables
+## 🧭 Overview
+
+FGV - FaceTendance uses the structures defined here to process and store attendance records and worker biometric information securely.
+
+## Borrowed Workers
+
+To handle the case of borrowed workers.
+The device shall download workers from a new table called
+
+### estate_workers_master_data
+
+| Column Name          | Data Type | Notes                                           |
+| :------------------- | :-------- | :---------------------------------------------- |
+| `original_estate_id` | String    | Original estate ID for attendance submission.   |
+| `working_estate_id`  | String    | Current estate ID where the worker is assigned. |
+| `worker_id`          | String    | Unique identifier for the worker.               |
+| `worker_name`        | String    | Full name of the worker.                        |
+| `supervisor_id`      | String    | Identifier for the worker's supervisor.         |
+
+This way the device can download based on `working_estate_id`, so it will get all the workers present.\
+`original_estate_id` is still needed because that's the id that will be used for attendance.
+
+## 📸 Worker Biometrics
+
+A new table for Worker Biometrics will be created containing the following columns:
+
+| Column Name              | Data Type   | Notes                                        |
+| :----------------------- | :---------- | :------------------------------------------- |
+| `worker_id`              | String      | Identifier for the worker.                   |
+| `image`                  | Binary/Blob | Stores the worker's image.                   |
+| `image_updated`          | Timestamp   | Timestamp of the last image update.          |
+| `embedding_int8`         | Binary/Blob | Stores the face embedding in INT8 format.    |
+| `embedding_int8_updated` | Timestamp   | Timestamp of the last INT8 embedding update. |
+| `embedding_fp8`          | Binary/Blob | Stores the face embedding in FP8 format.     |
+| `embedding_fp8_updated`  | Timestamp   | Timestamp of the last FP8 embedding update.  |
+
+## 🗄️ Other Tables
 
 | Name   | Description       | Download 📥 | Upload 📤 |
 | :----- | :---------------- | :---------: | :-------: |
 | `cotw` | Estate            |     ✅      |    ❌     |
 | `htsm` | Supervisor        |     ✅      |    ❌     |
-| `htsd` | Worker            |     ✅      |    ❌     |
+| `htsd` | Supervisor Worker |     ✅      |    ❌     |
 | `htam` | Attendance Header |     ✅      |    ❌     |
 | `htad` | Attendance Detail |     ✅      |    ✅     |
 | `padj` | Overtime          |     ❌      |    ❌     |
+| `htsd` | Worker            |     ❌      |    ❌     |
 
 ### cotw (Estate)
 
@@ -45,9 +82,11 @@ This is the main attendance table that we:\
 - download data from
 - and upload data to.
 
-### padj (over-time)
+## ⚙️ Database Naming Convention
 
-## Links
+Currently each estate has their own database named as `ermlprod*r530_est*[####]` ending with a 4 digit estate code in the end.
+
+## 🔗 Links
 
 - [Daily Flow](./daily-flow.md)
 - [OpenAPI](./openapi)

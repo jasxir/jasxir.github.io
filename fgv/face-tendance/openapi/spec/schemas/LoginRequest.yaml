@@ -1,0 +1,10 @@
+# LoginRequest
+type: object
+properties:
+  userid:
+    type: string
+  password:
+    type: string
+required:
+  - userid
+  - password
