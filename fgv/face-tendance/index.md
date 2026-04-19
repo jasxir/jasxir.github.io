@@ -13,10 +13,10 @@ The device shall download workers from a new table called
 
 | Column Name          | Data Type | Notes                                           |
 | :------------------- | :-------- | :---------------------------------------------- |
-| `original_estate_id` | String    | Original estate ID for attendance submission.   |
-| `working_estate_id`  | String    | Current estate ID where the worker is assigned. |
-| `worker_id`          | String    | Unique identifier for the worker.               |
+| `worker_id` 🔑       | String    | Unique identifier for the worker.               |
 | `worker_name`        | String    | Full name of the worker.                        |
+| `working_estate_id`  | String    | Current estate ID where the worker is assigned. |
+| `original_estate_id` | String    | Original estate ID for attendance submission.   |
 | `supervisor_id`      | String    | Identifier for the worker's supervisor.         |
 
 This way the device can download based on `working_estate_id`, so it will get all the workers present.\
@@ -28,7 +28,7 @@ A new table `worker_biometrics` will be created
 
 | Column Name              | Data Type   | Notes                                        |
 | :----------------------- | :---------- | :------------------------------------------- |
-| `worker_id`              | String      | Identifier for the worker.                   |
+| `worker_id` 🔑           | String      | Identifier for the worker.                   |
 | `image`                  | Binary/Blob | Stores the worker's image.                   |
 | `image_updated`          | Timestamp   | Timestamp of the last image update.          |
 | `embedding_int8`         | Binary/Blob | Stores the face embedding in INT8 format.    |
