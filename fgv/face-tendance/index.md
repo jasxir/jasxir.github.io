@@ -1,13 +1,8 @@
----
-layout: simple
-title: FGV
----
-
 # FGV - FaceTendance
 
 ## 🧭 Overview
 
-FGV - FaceTendance uses the structures defined here to process and store attendance records and worker biometric information securely.
+Below is the data I've collected regarding the project so far.
 
 ## Borrowed Workers
 
@@ -29,7 +24,7 @@ This way the device can download based on `working_estate_id`, so it will get al
 
 ## 📸 Worker Biometrics
 
-A new table for Worker Biometrics will be created containing the following columns:
+A new table `worker_biometrics` will be created
 
 | Column Name              | Data Type   | Notes                                        |
 | :----------------------- | :---------- | :------------------------------------------- |
@@ -43,15 +38,14 @@ A new table for Worker Biometrics will be created containing the following colum
 
 ## 🗄️ Other Tables
 
-| Name   | Description       | Download 📥 | Upload 📤 |
-| :----- | :---------------- | :---------: | :-------: |
-| `cotw` | Estate            |     ✅      |    ❌     |
-| `htsm` | Supervisor        |     ✅      |    ❌     |
-| `htsd` | Supervisor Worker |     ✅      |    ❌     |
-| `htam` | Attendance Header |     ✅      |    ❌     |
-| `htad` | Attendance Detail |     ✅      |    ✅     |
-| `padj` | Overtime          |     ❌      |    ❌     |
-| `htsd` | Worker            |     ❌      |    ❌     |
+| Name   | Description               | Download 📥 | Upload 📤 |
+| :----- | :------------------------ | :---------: | :-------: |
+| `cotw` | Estate                    |     ✅      |    ❌     |
+| `htsm` | Supervisor                |     ✅      |    ❌     |
+| `htsd` | Supervisor-Worker Mapping |     ❌      |    ❌     |
+| `htam` | Attendance Header         |     ❌      |    ❌     |
+| `htad` | Attendance Detail         |     ❌      |    ✅     |
+| `padj` | Overtime                  |     ❌      |    ❌     |
 
 ### cotw (Estate)
 
@@ -72,8 +66,8 @@ supervisor + month + year.\
 
 01403226202602\
 `01403226` + `2026` + `02`\
-`htam_supervisor_id` + `htam_year` + `zero_padd_2(htam_period)`\
-htam_period varchar(2) is month
+`htam_supervisor_id` + `htam_year` + zero_padd_2(`htam_period`)\
+`htam_period` varchar(2) is month
 
 ### htad (Attendance Detail)
 
