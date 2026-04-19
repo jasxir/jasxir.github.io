@@ -4,5 +4,5 @@ defaults:
   - scope:
       path: "fgv" # Applies to everything in the /fgv/ folder
     values:
-      name: true
-      title: false
+      name: FGV
+      title: null
