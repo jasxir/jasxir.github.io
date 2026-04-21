@@ -40,8 +40,13 @@ Estate:
       format: time
       description: The end time of the second rest period (mapped from `cotw_rest2_end`).
       example: "14:00"
-    overtime:
+    overtimeThreshold:
       type: string
       format: duration
-      description: Calculated based on checkOut time and workEnd (mapped from `cotw_rest_ot`).
-      example: "02:30"
+      description: |
+        Mapped from `cotw_rest_ot`.\
+        **OT** = (*ClockOutTime* - `cotw_work_end`) - `cotw_rest_ot`\
+        e.g.\
+        **OT** = (*07:00PM* -  `04:30PM`) - `00:30` = **02:00**\
+        _**NOTE:** Value can't be set negative, set **00:00** if calculation gives -ve._
+      example: "00:30"

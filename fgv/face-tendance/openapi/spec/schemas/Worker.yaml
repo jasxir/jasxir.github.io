@@ -19,6 +19,9 @@ Worker:
       example: "JUMARDI"
     type:
       type: string
+      enum:
+        - LOCAL
+        - FOREIGN
       description: Type of worker (mapped from `htma_worker_type`).
       example: "FOREIGN"
     supervisorId:
