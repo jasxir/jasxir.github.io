@@ -23,6 +23,31 @@ servers:
         default: "v1"
 
 paths:
+  /estates/{estateId}:
+    get:
+      summary: Fetch estate details
+      description: Retrieves detailed information for a specific estate.
+      security: []
+      operationId: getEstateById
+      tags:
+        - Estates
+      parameters:
+        - name: estateId
+          in: path
+          required: true
+          description: The unique ID of the estate.
+          schema:
+            type: string
+            example: "0320"
+      responses:
+        "200":
+          description: A successful response containing estate details.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Estate"
+        "404":
+          description: The estate ID was not found.
   /estates/{estateId}/supervisors:
     get:
       summary: Get Supervisor List
@@ -349,7 +374,7 @@ paths:
                 type: array
                 items:
                   type: integer
-                  format: int32 # Representing the 8-bit values in a standard integer array
+                  format: int8 # Representing the 8-bit values in a standard integer array
         "304":
           description: Not Modified.
         "404":
@@ -395,3 +420,5 @@ components:
       $ref: schemas/UpdateResponse.yaml#/UpdateResponse
     AttendanceRecord:
       $ref: schemas/AttendanceRecord.yaml#/AttendanceRecord
+    Estate:
+      $ref: schemas/Estate.yaml#/Estate

@@ -7,20 +7,36 @@ Worker:
     - id
     - name
     - supervisorId
+    - originalEstateCode
   properties:
     id:
       type: string
-      description: The unique worker ID (mapped from `htsd_worker_id`).
-      example: "FC32025000"
+      description: The unique worker ID (mapped from `htma_worker_id`).
+      example: "FC64325001"
     name:
       type: string
-      description: The full name of the worker (mapped from `htsd_worker_name`).
-      example: "ROZIKIN"
+      description: The full name of the worker (mapped from `htma_worker_name`).
+      example: "JUMARDI"
     type:
       type: string
-      description: Type of worker (mapped from `htsd_worker_type`).
+      description: Type of worker (mapped from `htma_worker_type`).
       example: "FOREIGN"
     supervisorId:
       type: string
-      description: The full name of the worker (mapped from `htsd_supervisor_id`).
-      example: "01403226"
+      description: Worker's Supervisor Id (mapped from `htma_supervisor_id`).
+      example: "01403655"
+    originalEstateCode:
+      type: string
+      description: Worker's original estate code (mapped from `htma_original_estcode`).
+      example: "0643"
+    workingOnEstateCode:
+      type: string
+      description: Worker's current estate code (mapped from `htma_new_estate`).
+      example: "0643"
+    isBorrowed:
+      type: string
+      enum:
+        - NO
+        - YES
+      description: If *originalEstateCode* and *workingOnEstateCode* are the same then *NO* otherwise *YES*
+      example: NO
