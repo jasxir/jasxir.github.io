@@ -2,6 +2,15 @@
 
 Estate:
   type: object
+  required:
+    - id
+    - name
+    - workcleaEnd
+    - rest1Start
+    - rest1End
+    - rest2Start
+    - rest2End
+    - overtimeThreshold
   properties:
     id:
       type: string
