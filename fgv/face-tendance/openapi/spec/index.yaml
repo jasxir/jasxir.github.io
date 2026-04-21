@@ -115,14 +115,17 @@ paths:
                   name: AZLIZAN BIN AB RAHMAN
                   type: LOCAL
                   supervisorId: "01403462"
+                  originalEstateCode: "0643"
                 - id: FW03200993
                   name: HOSSEN MD SANWAR
                   type: FOREIGN
                   supervisorId: "01403462"
+                  originalEstateCode: "0643"
                 - id: FC32025000
                   name: ROZIKIN
                   type: FOREIGN
                   supervisorId: "01403226"
+                  originalEstateCode: "0643"
         "404":
           description: The estate ID was not found.
         "500":
