@@ -25,7 +25,7 @@ servers:
 paths:
   /estates/{estateId}:
     get:
-      summary: Fetch estate details
+      summary: Get Estate Details
       description: Retrieves detailed information for a specific estate.
       security: []
       operationId: getEstateById
