@@ -4,6 +4,18 @@
 
 Below is the data I've collected regarding the project so far.
 
+# Demo
+
+## Company Structure
+
+For the demo we traget **PALONG 20** & **PALONG 21** data.
+
+- **PENINSULAR 1** (_0104_) <sub>Zone</sub>
+  - **NEGERI SEMBILAN** (_NEGERI SEMBILAN_) <sub>State</sub>
+    - **WILAYAH SERTING** (_010404_) <sub>Region</sub>
+      - **PALONG 20** (_0639_) <sub>Estate</sub>
+      - **PALONG 21** (_0643_) <sub>Estate</sub>
+
 ## Borrowed Workers
 
 To handle the case of borrowed workers.
