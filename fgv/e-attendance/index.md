@@ -1,4 +1,4 @@
-# FGV - FaceTendance
+# FGV E-Attendance
 
 ## 🧭 Overview
 

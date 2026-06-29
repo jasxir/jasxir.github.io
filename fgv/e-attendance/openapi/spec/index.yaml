@@ -9,7 +9,7 @@ info:
   version: 0.1.0-alpha
   license:
     name: Proprietary
-    url: https://jasxir.github.io/fgv/face-tendance/openapi
+    url: https://jasxir.github.io/fgv/e-attendance/openapi
 
   description: API for retrieving and managing all data related to attendance including supervisor, worker, attendance records.
 servers:
