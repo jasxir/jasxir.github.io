@@ -48,6 +48,19 @@ A new table `worker_biometrics` will be created
 | `embedding_fp8`          | Binary/Blob | Stores the face embedding in FP8 format.     |
 | `embedding_fp8_updated`  | Timestamp   | Timestamp of the last FP8 embedding update.  |
 
+```sql
+CREATE TABLE worker_biometrics (
+    worker_id VARCHAR(50) NOT NULL,
+    image BLOB DEFAULT NULL COMMENT 'Stores the worker''s image',
+    image_updated TIMESTAMP NULL DEFAULT NULL COMMENT 'Timestamp of the last image update',
+    embedding_int8 BLOB DEFAULT NULL COMMENT 'Stores the face embedding in INT8 format',
+    embedding_int8_updated TIMESTAMP NULL DEFAULT NULL COMMENT 'Timestamp of the last INT8 embedding update',
+    embedding_fp8 BLOB DEFAULT NULL COMMENT 'Stores the face embedding in FP8 format',
+    embedding_fp8_updated TIMESTAMP NULL DEFAULT NULL COMMENT 'Timestamp of the last FP8 embedding update',
+    PRIMARY KEY (worker_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+```
+
 ## 🗄️ Other Tables
 
 | Name   | Description               | Download 📥 | Upload 📤 |
