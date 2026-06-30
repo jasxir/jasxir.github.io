@@ -2,7 +2,7 @@
 
 openapi: 3.0.0
 info:
-  title: FGV - FaceTendance
+  title: FGV E-Attendance
   contact:
     name: Aim-Force Software SDN BHD
     url: http://www.aim-force.com.my
@@ -13,25 +13,31 @@ info:
 
   description: API for retrieving and managing all data related to attendance including supervisor, worker, attendance records.
 servers:
-  - url: "https://{host}/api/{version}"
-    description: Example FaceTendance Server
+  - url: "https://{host}/e-attendance/api/{version}"
+    description: Example E-Attendance Server
     variables:
       host:
-        default: "facetendance.fgvholdings.com"
+        default: "attendance.fgvholdings.com"
         description: Staging Server
       version:
         default: "v1"
 
 paths:
-  /estates/{estateId}:
+  /{companyCode}/estates/{estateId}:
     get:
-      summary: Get Estate Details
+      summary: Get OT-Configuration
       description: Retrieves detailed information for a specific estate.
       security: []
       operationId: getEstateById
       tags:
         - Estates
       parameters:
+        - name: companyCode
+          in: path
+          required: true
+          description: The unique company code.
+          schema:
+            type: string
         - name: estateId
           in: path
           required: true
@@ -48,7 +54,7 @@ paths:
                 $ref: "#/components/schemas/Estate"
         "404":
           description: The estate ID was not found.
-  /estates/{estateId}/supervisors:
+  /{companyCode}/estates/{estateId}/supervisors:
     get:
       summary: Get Supervisor List
       description: Downloads a list of all supervisors associated with a specific estate ID.
@@ -57,6 +63,12 @@ paths:
       tags:
         - Supervisors
       parameters:
+        - name: companyCode
+          in: path
+          required: true
+          description: The unique company code.
+          schema:
+            type: string
         - name: estateId
           in: path
           required: true
@@ -85,7 +97,7 @@ paths:
         "500":
           description: Internal server error.
 
-  /estates/{estateId}/workers:
+  /{companyCode}/estates/{estateId}/workers:
     get:
       summary: Get Worker List
       description: Downloads a list of all workers associated with a specific estate ID.
@@ -94,6 +106,12 @@ paths:
       tags:
         - Workers
       parameters:
+        - name: companyCode
+          in: path
+          required: true
+          description: The unique company code.
+          schema:
+            type: string
         - name: estateId
           in: path
           required: true
@@ -131,7 +149,7 @@ paths:
         "500":
           description: Internal server error.
 
-  /workers/{workerId}/attendance:
+  /{companyCode}/workers/{workerId}/attendance:
     get:
       operationId: getWorkerAttendance
       security: []
@@ -140,6 +158,12 @@ paths:
       tags:
         - Attendance
       parameters:
+        - name: companyCode
+          in: path
+          required: true
+          description: The unique company code.
+          schema:
+            type: string
         - name: workerId
           in: path
           required: true
@@ -194,6 +218,12 @@ paths:
       tags:
         - Attendance
       parameters:
+        - name: companyCode
+          in: path
+          required: true
+          description: The unique company code.
+          schema:
+            type: string
         - name: workerId
           in: path
           required: true
@@ -215,7 +245,7 @@ paths:
         "400":
           description: Invalid data provided.
 
-  /workers/{workerId}/photo:
+  /{companyCode}/workers/{workerId}/photo:
     get:
       operationId: getWorkerPhoto
       security: []
@@ -223,6 +253,12 @@ paths:
       tags:
         - Workers
       parameters:
+        - name: companyCode
+          in: path
+          required: true
+          description: The unique company code.
+          schema:
+            type: string
         - name: workerId
           in: path
           required: true
@@ -256,6 +292,12 @@ paths:
       tags:
         - Workers
       parameters:
+        - name: companyCode
+          in: path
+          required: true
+          description: The unique company code.
+          schema:
+            type: string
         - name: workerId
           in: path
           required: true
@@ -279,7 +321,7 @@ paths:
         "400":
           description: Invalid image format.
 
-  /workers/{workerId}/embeddings/fp32:
+  /{companyCode}/workers/{workerId}/embeddings/fp32:
     get:
       operationId: getWorkerEmbeddingFP32
       security: []
@@ -288,6 +330,12 @@ paths:
       tags:
         - Workers
       parameters:
+        - name: companyCode
+          in: path
+          required: true
+          description: The unique company code.
+          schema:
+            type: string
         - name: workerId
           in: path
           required: true
@@ -322,6 +370,12 @@ paths:
       tags:
         - Workers
       parameters:
+        - name: companyCode
+          in: path
+          required: true
+          description: The unique company code.
+          schema:
+            type: string
         - name: workerId
           in: path
           required: true
@@ -346,7 +400,7 @@ paths:
         "400":
           description: Bad Request. The embedding array is malformed or has incorrect dimensions.
 
-  /workers/{workerId}/embeddings/hv-int8:
+  /{companyCode}/workers/{workerId}/embeddings/hv-int8:
     get:
       operationId: getWorkerEmbeddingHVInt8
       security: []
@@ -355,6 +409,12 @@ paths:
       tags:
         - Workers
       parameters:
+        - name: companyCode
+          in: path
+          required: true
+          description: The unique company code.
+          schema:
+            type: string
         - name: workerId
           in: path
           required: true
@@ -389,6 +449,12 @@ paths:
       tags:
         - Workers
       parameters:
+        - name: companyCode
+          in: path
+          required: true
+          description: The unique company code.
+          schema:
+            type: string
         - name: workerId
           in: path
           required: true
